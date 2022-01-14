@@ -27,9 +27,9 @@ jobs:
         id: dockerPrep
         run: |
           NEXT_PUBLIC_GRAPHQL_URL="https://gql-testnet.evmos.forbole.com/v1/graphql"
-          NEXT_PUBLIC_GRAPHQL_WS="wws://gql-testnet.evmos.forbole.com/v1/graphql"
-          NEXT_PUBLIC_URL="https://morpheus.desmos.network"
-          NEXT_PUBLIC_WS_CHAIN_URL="wss://rpc.morpheus.desmos.network/websocket"
+          NEXT_PUBLIC_GRAPHQL_WS="wss://gql-testnet.evmos.forbole.com/v1/graphql"
+          NEXT_PUBLIC_URL="https://regen.bigdipper.live"
+          NEXT_PUBLIC_WS_CHAIN_URL="wss://rpc.regen.forbole.com/websocket"
           NEXT_PUBLIC_CHAIN_STATUS="testnet"
           NODE_ENV="production"
           PORT=3000
