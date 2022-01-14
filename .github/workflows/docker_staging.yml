@@ -3,8 +3,8 @@ name: Docker-Staging
 on:
   pull_request:
   push:
-    # branches:
-    #   - chains/desmos
+    branches:
+      - chains/desmos
 
 jobs:
   Build-and-Publish:
