@@ -3,8 +3,8 @@ name: Docker-Staging
 on:
   pull_request:
   push:
-    branches:
-      - chains/desmos
+    # branches:
+    #   - chains/desmos
 
 jobs:
   Build-and-Publish:
@@ -19,18 +19,18 @@ jobs:
           if [[ $GITHUB_REF == refs/heads/chains/desmos ]]; then
             BRANCH="desmos"
           elif [[ $GITHUB_REF == refs/pull/* ]]; then
-            BRANCH="build-test"
+            BRANCH="evm-test"
           fi
           echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo ::set-output name=branch::${BRANCH}
       - name: Prepare docker build env
         id: dockerPrep
         run: |
-          NEXT_PUBLIC_GRAPHQL_URL="https://gql.morpheus.desmos.network/v1/graphql"
-          NEXT_PUBLIC_GRAPHQL_WS="wss://gql.morpheus.desmos.network/v1/graphql"
+          NEXT_PUBLIC_GRAPHQL_URL="https://gql-testnet.evmos.forbole.com/v1/graphql"
+          NEXT_PUBLIC_GRAPHQL_WS="wws://gql-testnet.evmos.forbole.com/v1/graphql"
           NEXT_PUBLIC_URL="https://morpheus.desmos.network"
           NEXT_PUBLIC_WS_CHAIN_URL="wss://rpc.morpheus.desmos.network/websocket"
-          NEXT_PUBLIC_CHAIN_STATUS="mainnet"
+          NEXT_PUBLIC_CHAIN_STATUS="testnet"
           NODE_ENV="production"
           PORT=3000
           echo ::set-output name=NEXT_PUBLIC_GRAPHQL_URL::${NEXT_PUBLIC_GRAPHQL_URL}
@@ -53,7 +53,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
+          # push: ${{ github.event_name != 'pull_request' }}
+          push: true
           build-args: |
             "NEXT_PUBLIC_GRAPHQL_URL=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_GRAPHQL_URL }}"
             "NEXT_PUBLIC_GRAPHQL_WS=${{ steps.dockerPrep.outputs.NEXT_PUBLIC_GRAPHQL_WS }}"
