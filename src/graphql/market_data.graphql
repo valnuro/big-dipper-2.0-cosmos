@@ -15,4 +15,13 @@ query MarketData ($denom: String) {
   bondedTokens: staking_pool(order_by: {height: desc}, limit: 1) {
     bonded_tokens
   }
+  mintParams: mint_params(order_by: {height: desc}, limit: 1) {
+    params
+  }
+  averageBlockTime: average_block_time_per_hour(order_by: {height: desc}, limit: 1) {
+    average_time
+  }
+  distributionParams: distribution_params(order_by: {height: desc}, limit: 1) {
+    params
+  }
 }

@@ -62,7 +62,18 @@ export const useMarketRecoil = () => {
 
     const bondedTokens = R.pathOr(0, ['bondedTokens', 0, 'bonded_tokens'], data);
 
-    const apr = Big(rawSupplyAmount).times(inflation).div(bondedTokens).toNumber();
+    const blocksPerYear = R.pathOr(0, ['mintParams', 0, 'params', 'blocks_per_year'], data);
+    const averageBlockTime = R.pathOr(0, ['averageBlockTime', 0, 'average_time'], data);
+    
+    let blockAdjustment = 1;
+    if(blocksPerYear) {
+      let blocksTimePerYear = 365*24*60*60/blocksPerYear;
+      blockAdjustment = blocksTimePerYear/averageBlockTime;
+    }
+    
+    const CommunityTax = parseFloat(R.pathOr(0, ['distributionParams', 0, 'params', 'community_tax'], data));
+
+    const apr = Big(rawSupplyAmount).times(1-CommunityTax).times(blockAdjustment).times(inflation).div(bondedTokens).toNumber();
 
     return ({
       price,

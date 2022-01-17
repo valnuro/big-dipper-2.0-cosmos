@@ -1,24 +1,24 @@
 {
   "title": "KiChain Block Explorer",
   "network": "desmos-mainnet-1",
-  "icon": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/desmos/icon.svg?sanitize=true",
+  "icon": "https://raw.githubusercontent.com/GunniStake/big-dipper-assets/main/kichain/icon.png",
   "logo": {
-    "default": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/desmos/logo.svg?sanitize=true"
+    "default": "https://raw.githubusercontent.com/GunniStake/big-dipper-assets/main/kichain/logo.png"
   },
   "prefix": {
-    "consensus": "desmosvalcons",
-    "validator": "desmosvaloper",
-    "account": "desmos"
+    "consensus": "kivalcons",
+    "validator": "kivaloper",
+    "account": "ki"
   },
   "genesis": {
-    "time": "2021-07-13T08:00:00",
-    "height": 1
+    "time": "2021-11-08T14:45:00",
+    "height": 6950001
   },
-  "primaryTokenUnit": "udsm",
-  "votingPowerTokenUnit": "udsm",
+  "primaryTokenUnit": "uxki",
+  "votingPowerTokenUnit": "uxki",
   "tokenUnits": {
-    "udsm": {
-      "display": "dsm",
+    "uxki": {
+      "display": "xki",
       "exponent": 6
     }
   },

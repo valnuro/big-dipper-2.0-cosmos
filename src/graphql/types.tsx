@@ -19036,6 +19036,15 @@ export type MarketDataQuery = { communityPool: Array<(
   )>, bondedTokens: Array<(
     { __typename?: 'staking_pool' }
     & Pick<Staking_Pool, 'bonded_tokens'>
+  )>, mintParams: Array<(
+    { __typename?: 'mint_params' }
+    & Pick<Mint_Params, 'params'>
+  )>, averageBlockTime: Array<(
+    { __typename?: 'average_block_time_per_hour' }
+    & Pick<Average_Block_Time_Per_Hour, 'average_time'>
+  )>, distributionParams: Array<(
+    { __typename?: 'distribution_params' }
+    & Pick<Distribution_Params, 'params'>
   )> };
 
 export type GetMessagesByAddressQueryVariables = Exact<{
@@ -19852,6 +19861,18 @@ export const MarketDataDocument = gql`
   }
   bondedTokens: staking_pool(order_by: {height: desc}, limit: 1) {
     bonded_tokens
+  }
+  mintParams: mint_params(order_by: {height: desc}, limit: 1) {
+    params
+  }
+  averageBlockTime: average_block_time_per_hour(
+    order_by: {height: desc}
+    limit: 1
+  ) {
+    average_time
+  }
+  distributionParams: distribution_params(order_by: {height: desc}, limit: 1) {
+    params
   }
 }
     `;
